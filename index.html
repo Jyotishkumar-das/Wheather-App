@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="main-container">
+
+        <!-- =================================
+             SEARCH BAR
+        ================================== -->
+        <header class="input-container">
+            <input class="city-input" type="text" placeholder="Search City" autocomplete="off">
+            <button class="search-btn" aria-label="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </header>
+
+        <!-- =================================
+             WEATHER INFORMATION
+        ================================== -->
+        <section class="weather-info">
+
+            <!-- LOCATION + DATE -->
+            <div class="location-date-container">
+                <div class="location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h4 class="country-txt">Singapore</h4>
+                </div>
+                <h5 class="current-data-txt">Thu, 08 Aug</h5>
+            </div>
+
+            <!-- MAIN WEATHER -->
+            <div class="weather-summary-container">
+                <div class="weather-summary">
+                    <img src="assets/weather/clouds.svg" alt="Weather" class="weather-summary-img">
+                    <div class="temperature">
+                        <h1 class="temp-txt">30 °C</h1>
+                        <h3 class="condition-txt">Clouds</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HUMIDITY + WIND -->
+            <div class="weather-condition-container">
+                <div class="condition-info">
+                    <i class="fa-solid fa-droplet"></i>
+                    <div>
+                        <h5>Humidity</h5>
+                        <h5 class="humidity-value-txt">74%</h5>
+                    </div>
+                </div>
+
+                <div class="condition-info">
+                    <i class="fa-solid fa-wind"></i>
+                    <div>
+                        <h5>Wind Speed</h5>
+                        <h5 class="wind-value-txt">4.12 m/s</h5>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORECAST CARDS -->
+            <div class="forecast-items-container">
+                <!-- JavaScript populates forecast cards here -->
+            </div>
+
+        </section>
+
+        <!-- =================================
+             SEARCH CITY INITIAL MESSAGE
+        ================================== -->
+        <section class="search-city section-message">
+            <img src="assets/message/search-city.png" alt="Search city" class="message-img">
+            <div>
+                <h1>Search city</h1>
+                <h4>Find out the weather conditions of the city</h4>
+            </div>
+        </section>
+
+        <!-- =================================
+             CITY NOT FOUND MESSAGE
+        ================================== -->
+        <section class="not-found section-message">
+            <img src="assets/message/not-found.png" alt="City not found" class="message-img">
+            <div>
+                <h1>City not found</h1>
+                <h4>Please enter a valid city name</h4>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

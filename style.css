@@ -1,0 +1,348 @@
+/* =====================================
+   RESET
+===================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+/* =====================================
+   BODY
+===================================== */
+body {
+    width: 100%;
+    height: 100vh;
+    background: url("assets/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+}
+
+/* BLUR OVERLAY */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(15px);
+    z-index: 0;
+}
+
+/* =====================================
+   MAIN CARD
+===================================== */
+.main-container {
+    position: relative;
+    width: 335px;
+    max-width: calc(100vw - 32px);
+    height: 550px;
+    padding: 20px;
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 16px;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.18),
+            rgba(0, 0, 0, 0.20));
+    backdrop-filter: blur(30px);
+    overflow: hidden;
+}
+
+/* =====================================
+   SEARCH BAR
+===================================== */
+.input-container {
+    position: relative;
+    width: 100%;
+    height: 48px;
+}
+
+.city-input {
+    width: 100%;
+    height: 48px;
+    padding: 0 50px 0 18px;
+    border: 2px solid transparent;
+    border-radius: 50px;
+    outline: none;
+    background: rgba(0, 0, 0, 0.18);
+    font-size: 14px;
+    font-weight: 500;
+    transition: border-color 0.2s ease;
+}
+
+.city-input::placeholder {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.city-input:focus {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.search-btn {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* =====================================
+   WEATHER INFORMATION CONTAINER
+   (Crucial: flex-direction: column)
+===================================== */
+.weather-info {
+    display: none;
+    /* Controlled by JS as display: flex */
+    flex-direction: column;
+    /* Stacks location, weather, stats, and forecast vertically */
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* =====================================
+   LOCATION + DATE
+===================================== */
+.location-date-container {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.location i {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.location h4 {
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.current-data-txt {
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* =====================================
+   MAIN WEATHER AREA
+===================================== */
+.weather-summary-container {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.weather-summary {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.weather-summary-img {
+    width: 130px;
+    height: 110px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.temperature {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.temperature h1 {
+    font-size: 32px;
+    line-height: 1.1;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.temperature h3 {
+    margin-top: 4px;
+    font-size: 15px;
+    line-height: 1.2;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+/* =====================================
+   HUMIDITY + WIND
+===================================== */
+.weather-condition-container {
+    width: 100%;
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    margin-top: 10px;
+}
+
+.condition-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.condition-info>i {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.condition-info div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.condition-info h5 {
+    font-size: 11px;
+    line-height: 16px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.condition-info h5:last-child {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* =====================================
+   FORECAST SECTION
+===================================== */
+.forecast-items-container {
+    width: 100%;
+    height: 135px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    padding: 6px 2px 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+}
+
+/* FORECAST SCROLLBAR */
+.forecast-items-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.forecast-items-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+}
+
+.forecast-items-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+}
+
+.forecast-items-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.45);
+}
+
+/* FORECAST CARD */
+.forecast-item {
+    width: 76px;
+    min-width: 76px;
+    height: 115px;
+    padding: 8px 6px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.forecast-item:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-3px);
+}
+
+.forecast-item-date {
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.forecast-item-img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.forecast-item-temp {
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* =====================================
+   MESSAGE SCREENS (INITIAL & ERROR)
+===================================== */
+.section-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 15px;
+    width: 100%;
+    height: 430px;
+    padding: 20px;
+}
+
+.section-message img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+}
+
+.section-message h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.section-message h4 {
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.not-found {
+    display: none;
+}
